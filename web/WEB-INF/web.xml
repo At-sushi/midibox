@@ -16,4 +16,12 @@
         <servlet-name>GroovyServlet</servlet-name>
         <url-pattern>*.groovy</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GroovyTemplate</servlet-name>
+        <servlet-class>groovy.servlet.TemplateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GroovyTemplate</servlet-name>
+        <url-pattern>*.gsp</url-pattern>
+    </servlet-mapping>
 </web-app>

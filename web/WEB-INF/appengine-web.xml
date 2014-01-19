@@ -11,4 +11,7 @@ xsi:schemaLocation='http://kenai.com/projects/nbappengine/downloads/download/sch
     <system-properties>
         <property name="file.encoding" value="UTF-8"/>
     </system-properties>
+    <static-files> 
+        <exclude path="/**.gsp" /> 
+    </static-files> 
 </appengine-web-app>
