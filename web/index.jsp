@@ -12,6 +12,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>仮版ページ</h1>
+        <table>
+            <tr>
+                <td>名前</td>
+                <td>投稿者</td>
+                <td>最終更新日</td>
+                <td>長さ</td>
+                <td>再生</td>
+            </tr>
+            <tr>
+                <td colspan="5">コメント</td>
+            </tr>
+        </table>
     </body>
 </html>
