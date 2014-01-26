@@ -19,7 +19,7 @@
                 <td>投稿者</td>
                 <td>最終更新日</td>
                 <td>長さ</td>
-                <td>再生</td>
+                <td>PV</td>
             </tr>
             <tr>
                 <td colspan="5">コメント</td>
