@@ -50,13 +50,13 @@ public class UploadServlet extends HttpServlet {
             else {
                 processBlob(blob.get(0));
             }
-
-            // まだテスト中なので削除する設定
-            blobstore.delete(GroovyAssist.toObjectsArray(bloblist.values()));
         }
         else {      // ブロブが投稿されてない
             response.getWriter().println("ファイル情報がないっす");
         }
+
+        // まだテスト中なので削除する設定
+        blobstore.delete(GroovyAssist.toObjectsArray(bloblist.values()));
     }
     
     private boolean processBlob(BlobKey blob) {
