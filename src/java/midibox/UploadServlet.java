@@ -53,10 +53,9 @@ public class UploadServlet extends HttpServlet {
             }
 
             // まだテスト中なので削除する設定
-            // groovy使えば良かった… 移行も検討
             blobstore.delete(GroovyAssist.toObjectsArray(bloblist.values()));
         }
-        else {
+        else {      // ブロブが投稿されてない
             response.getWriter().println("ファイル情報がないっす");
         }
     }
