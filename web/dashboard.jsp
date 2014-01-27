@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,7 +25,7 @@
                 <td colspan="5">コメント</td>
             </tr>
         </table>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="<%= BlobstoreServiceFactory.getBlobstoreService().createUploadUrl("/upload") %>" method="post" enctype="multipart/form-data">
             <input type="file" name="source">
             名前：<input type="text" name="dataname">
             ライセンス：
