@@ -4,7 +4,6 @@
  */
 package midibox;
 
-import com.google.appengine.api.blobstore.BlobInfo;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
@@ -55,7 +54,7 @@ public class UploadServlet extends HttpServlet {
 
             // まだテスト中なので削除する設定
             // groovy使えば良かった… 移行も検討
-            blobstore.delete((BlobKey[])blob.toArray());
+            blobstore.delete(GroovyAssist.toObjectsArray(bloblist.values()));
         }
         else {
             response.getWriter().println("ファイル情報がないっす");

@@ -45,7 +45,7 @@
 
     <!-- Data Nucleus JPA Enhancer -->
     <target unless="${appengine.jpa2}" name="datanucleusenhance" description="Performs JDO enhancement on compiled data classes." depends="copyjars">
-        <enhance_war war="${build.web.dir}" >
+        <enhance_war war="${build.web.dir}">
             <args>
                 <arg value="-enhancerVersion"/>
                 <arg value="v2"/>
