@@ -56,7 +56,7 @@ public class UploadServlet extends HttpServlet {
         }
 
         // まだテスト中なので削除する設定
-        blobstore.delete(GroovyAssist.toObjectsArray(bloblist.values()));
+        blobstore.delete((BlobKey[])GroovyAssist.toObjectsArray(bloblist.values()));
     }
     
     private boolean processBlob(BlobKey blob) {
