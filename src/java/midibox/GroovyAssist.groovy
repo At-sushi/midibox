@@ -7,14 +7,16 @@
 package midibox
 
 import com.google.appengine.api.blobstore.BlobKey
+import groovy.transform.CompileStatic
 /**
  *
  * @author soji_2
  */
+@CompileStatic
 class GroovyAssist {
     // ネストしたCollectionを配列化
     static BlobKey[] toObjectsArray(Collection source) {
-        return source.flatten { object -> return object };
+        return source.flatten();
     }
 }
 
