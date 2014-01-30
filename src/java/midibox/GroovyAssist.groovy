@@ -15,7 +15,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 final class GroovyAssist {
     // ネストしたCollectionを配列化
-    static final Object[] toObjectsArray(Collection source) {
+    static final BlobKey[] toObjectsArray(Collection source) {
         return source.flatten();
     }
 }
