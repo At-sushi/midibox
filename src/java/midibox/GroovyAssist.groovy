@@ -11,6 +11,8 @@ import groovy.transform.CompileStatic
 /**
  *
  * @author soji_2
+ * 
+ * Groovyを使った補助関数群。便利。
  */
 @CompileStatic
 final class GroovyAssist {
