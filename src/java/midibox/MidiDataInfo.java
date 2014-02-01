@@ -26,7 +26,7 @@ public class MidiDataInfo implements IDiscardNeeded {
     private Long ID;
     
     @Persistent
-    private User author;        // 暫定。型は専用のJDOクラスに変える可能性有り。
+    private UserAccountInfo author;        // 暫定。型は専用のJDOクラスに変える可能性有り。
     
     @Persistent
     private String name;
