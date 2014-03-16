@@ -10,6 +10,8 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +50,8 @@ public class UploadServlet extends HttpServlet {
             if (request.getUserPrincipal() == null)
                 response.sendRedirect("/");
             else {
-                processBlob(blob.get(0));
+                processBlob(request, blob.get(0));
+                return;
             }
         }
         else {      // ブロブが投稿されてない
@@ -60,9 +63,18 @@ public class UploadServlet extends HttpServlet {
         assert(blobstore.getUploads(request).isEmpty());
     }
     
-    private boolean processBlob(BlobKey blob) {
+    private boolean processBlob(HttpServletRequest request, BlobKey blob) {
         // void
-        return false;
+        MidiDataInfo mi = new MidiDataInfo((String) request.getAttribute("dataname"), blob, null);
+        PersistenceManager pmf = PMF.get().getPersistenceManager();
+        
+        try {
+            pmf.makePersistent(mi);
+       } finally {
+            pmf.close();
+        }
+        
+        return true;
     }
 
     /**

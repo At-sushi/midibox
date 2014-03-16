@@ -5,6 +5,7 @@
 package midibox;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.datastore.Text;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -26,10 +27,13 @@ public class MidiDataInfo implements IDiscardNeeded {
     private Long ID;
     
     @Persistent
-    private UserAccountInfo author;        // 暫定。型は専用のJDOクラスに変える可能性有り。
+    public String name;
     
     @Persistent
-    private String name;
+    public String licence;
+    
+    @Persistent
+    public Text comment;
     
     @Persistent
     private Date lastModified;
@@ -40,6 +44,15 @@ public class MidiDataInfo implements IDiscardNeeded {
     @Persistent
     private BlobKey data;
 
+    @Persistent
+    private UserAccountInfo author;        // 暫定。型は専用のJDOクラスに変える可能性有り。
+    
+    public MidiDataInfo(String name, BlobKey data, UserAccountInfo author) {
+        this.name = name;
+        this.data = data;
+        this.author = author;
+    }
+    
     public void updateData(BlobKey newData) {
         discard();
         data = newData;
