@@ -4,6 +4,11 @@
     Author     : soji_2
 --%>
 
+<%@page import="java.util.ListIterator"%>
+<%@page import="java.util.List"%>
+<%@page import="midibox.MidiDataInfo"%>
+<%@page import="midibox.PMF"%>
+<%@page import="javax.jdo.PersistenceManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory" %>
 <!DOCTYPE html>
@@ -15,7 +20,25 @@
     <body>
         <h1>個別ページ</h1>
         <table>
+            <%
+                PersistenceManager pmf = PMF.get().getPersistenceManager();
+                List<MidiDataInfo> midiDataList = (List<MidiDataInfo>)pmf.newQuery(MidiDataInfo.class).execute();
+                
+                for (MidiDataInfo mdi : midiDataList) {
+                    %>
             <tr>
+                <td><%= mdi.name %></td>
+                <td>最終更新日</td>
+                <td>長さ</td>
+                <td>PV</td>
+            </tr>
+            <tr>
+                <td colspan="5"><%= mdi.comment %></td>
+            </tr>
+            <%
+                }
+            %>
+          <tr>
                 <td>名前</td>
                 <td>最終更新日</td>
                 <td>長さ</td>
@@ -24,7 +47,7 @@
             <tr>
                 <td colspan="5">コメント</td>
             </tr>
-        </table>
+          </table>
         <form action="<%= BlobstoreServiceFactory.getBlobstoreService().createUploadUrl("/upload") %>" method="post" enctype="multipart/form-data">
             <input type="file" name="source">
             名前：<input type="text" name="dataname">
