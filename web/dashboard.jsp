@@ -30,10 +30,10 @@
                 <td><%= mdi.name %></td>
                 <td>最終更新日</td>
                 <td>長さ</td>
-                <td>PV</td>
+                <td><a href="/blob?<%= mdi.getBlobKey().getKeyString() %>">PV</a></td>
             </tr>
             <tr>
-                <td colspan="5"><%= mdi.comment %></td>
+                <td colspan="5"><% if ( mdi.comment != null) System.out.print(mdi.comment.getValue()); %></td>
             </tr>
             <%
                 }

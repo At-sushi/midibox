@@ -7,11 +7,11 @@ package midibox;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.datastore.Text;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +47,7 @@ public class UploadServlet extends HttpServlet {
             
         if (blob != null) {
             // ログイン確認用フィルター
-            if (request.getUserPrincipal() == null)
+            if (false)
                 response.sendRedirect("/");
             else {
                 processBlob(request, blob.get(0));
@@ -65,8 +65,10 @@ public class UploadServlet extends HttpServlet {
     
     private boolean processBlob(HttpServletRequest request, BlobKey blob) {
         // void
-        MidiDataInfo mi = new MidiDataInfo((String) request.getAttribute("dataname"), blob, null);
+        MidiDataInfo mi = new MidiDataInfo((String) request.getParameter("dataname"), blob, null);
         PersistenceManager pmf = PMF.get().getPersistenceManager();
+        
+        mi.comment = new Text((String)request.getParameter("commentText"));
         
         try {
             pmf.makePersistent(mi);

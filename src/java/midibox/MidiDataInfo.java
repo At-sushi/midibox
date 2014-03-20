@@ -58,6 +58,8 @@ public class MidiDataInfo implements IDiscardNeeded {
         data = newData;
     }
     
+    public BlobKey getBlobKey() { return data; }
+    
     // データが消えるときの処理
     @Override
     public void discard() {
