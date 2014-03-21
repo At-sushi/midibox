@@ -70,6 +70,6 @@
         プロフィール編集
         設定
             <a href="index.jsp">INDEX</a>
-            <a href="<%= UserServiceFactory.getUserService().createLogoutURL(request.getRequestURI()) %>">ログアウト</a>
+            <a href="<%= UserServiceFactory.getUserService().createLogoutURL("/index.jsp") %>">ログアウト</a>
     </body>
 </html>
