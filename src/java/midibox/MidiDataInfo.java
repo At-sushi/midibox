@@ -60,7 +60,8 @@ public class MidiDataInfo implements IDiscardNeeded {
         lastModified = new Date();
     }
     
-    public BlobKey getBlobKey() { return data; }
+    public BlobKey getBlobKey()     { return data; }
+    public Date getLastModified()   { return lastModified; }
     
     // データが消えるときの処理
     @Override

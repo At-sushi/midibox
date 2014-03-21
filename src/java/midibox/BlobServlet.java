@@ -37,7 +37,7 @@ public class BlobServlet extends HttpServlet {
         // ブロブのデータを転送
         String range;
         
-        if ((range = request.getHeader("Range")) == null)
+        if ((range = request.getHeader("Range")) != null)
             blobstore.serve(new BlobKey(request.getQueryString()), range, response);
         else
             blobstore.serve(new BlobKey(request.getQueryString()), response);
