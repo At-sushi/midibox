@@ -4,6 +4,8 @@
     Author     : soji_2
 --%>
 
+<%@page import="com.google.appengine.api.users.UserServiceFactory"%>
+<%@page import="com.google.appengine.api.users.UserService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,5 +27,11 @@
                 <td colspan="5">コメント</td>
             </tr>
         </table>
+        <% if (request.getUserPrincipal() == null) { %>
+            <a href="<%= UserServiceFactory.getUserService().createLoginURL(request.getRequestURI()) %>">ログイン</a>
+        <% } else { %>
+            <a href="dashboard.jsp">ダッシュボード</a>
+            <a href="<%= UserServiceFactory.getUserService().createLogoutURL(request.getRequestURI()) %>">ログアウト</a>
+        <% } %>
     </body>
 </html>

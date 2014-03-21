@@ -4,6 +4,7 @@
     Author     : soji_2
 --%>
 
+<%@page import="com.google.appengine.api.users.UserServiceFactory"%>
 <%@page import="java.util.ListIterator"%>
 <%@page import="java.util.List"%>
 <%@page import="midibox.MidiDataInfo"%>
@@ -11,6 +12,11 @@
 <%@page import="javax.jdo.PersistenceManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory" %>
+<%
+    // ログインしていない場合はリダイレクト
+    if (request.getUserPrincipal() == null)
+        response.sendRedirect(UserServiceFactory.getUserService().createLoginURL(request.getRequestURI()));
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -63,5 +69,7 @@
         投稿
         プロフィール編集
         設定
+            <a href="index.jsp">INDEX</a>
+            <a href="<%= UserServiceFactory.getUserService().createLogoutURL(request.getRequestURI()) %>">ログアウト</a>
     </body>
 </html>

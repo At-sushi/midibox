@@ -47,7 +47,7 @@ public class UploadServlet extends HttpServlet {
             
         if (blob != null) {
             // ログイン確認用フィルター
-            if (false)
+            if (request.getUserPrincipal() == null)
                 response.sendRedirect("/");
             else {
                 processBlob(request, blob.get(0));
@@ -65,7 +65,7 @@ public class UploadServlet extends HttpServlet {
     
     private boolean processBlob(HttpServletRequest request, BlobKey blob) {
         // void
-        MidiDataInfo mi = new MidiDataInfo((String) request.getParameter("dataname"), blob, null);
+        MidiDataInfo mi = new MidiDataInfo((String) request.getParameter("dataname"), blob, new UserAccountInfo());
         PersistenceManager pmf = PMF.get().getPersistenceManager();
         
         mi.comment = new Text((String)request.getParameter("commentText"));

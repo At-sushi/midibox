@@ -51,11 +51,13 @@ public class MidiDataInfo implements IDiscardNeeded {
         this.name = name;
         this.data = data;
         this.author = author;
+        lastModified = new Date();  // 現在時刻が保存されるらしい
     }
     
     public void updateData(BlobKey newData) {
         discard();
         data = newData;
+        lastModified = new Date();
     }
     
     public BlobKey getBlobKey() { return data; }

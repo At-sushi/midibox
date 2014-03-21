@@ -22,6 +22,9 @@ public class UserAccountInfo {
     private Long ID;
     
     @Persistent
+    private String loginID;
+    
+    @Persistent
     private byte[] password;
     
     @Persistent(mappedBy = "author")
